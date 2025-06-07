@@ -64,7 +64,7 @@
 							key="labels.search_result_more" /></a>
 				</div>
 				<div class="info">
-					<fmt:formatDate value="${fe:parseDate(doc.last_modified)}" type="BOTH" pattern="yyyy-MM-dd HH:mm" />
+					最終更新：<fmt:formatDate value="${fe:parseDate(doc.last_modified)}" type="BOTH" pattern="yyyy-MM-dd HH:mm" />
 					<c:if test="${doc.last_modified==null || doc.last_modified==''}">
 						<fmt:formatDate value="${fe:parseDate(doc.created)}" type="BOTH" pattern="yyyy-MM-dd HH:mm" />
 					</c:if>
@@ -102,6 +102,14 @@
 						<a href="#${doc.doc_id}" class="favorite"><i class="far fa-star"></i></a>
 						<span class="favorited"><i class="fas fa-star"></i></span>
 					</c:if>
+					<!-- <span>　スコア：${doc.score}</span> -->
+					<span>　スコア：<script>document.write((${doc.score}).toFixed(1));</script></span>
+					<!-- <span>　インデックス日時：${doc.created}</span> -->
+					　インデックス日時：<span id="time-${doc.doc_id}">${doc.created}</span>
+					<script>
+						// document.getElementById('time-${doc.doc_id}').textContent = new Date('${doc.created}').toLocaleString('ja-JP', {timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(/\//g, ' ').replace(',', '');
+						document.getElementById('time-${doc.doc_id}').textContent = new Date('${doc.created}').toLocaleString('ja-JP', {timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(',', '');
+					</script>
 				</div>
 			</li>
 		</c:forEach>
