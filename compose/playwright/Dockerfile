@@ -5,3 +5,12 @@ RUN apt-get update && \
     libatk1.0-0 libatk-bridge2.0-0 libxkbcommon0 libxdamage1 libgbm1 libasound2 libatspi2.0-0 && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
+    
+RUN playwright install-deps
+
+RUN playwright install
+
+RUN playwright install-deps
+
+RUN playwright install
+
